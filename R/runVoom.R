@@ -75,7 +75,7 @@ runVoom <- function(dgeObj,
                             msg = "dgeObj must be specified and must be of class 'DGEobj'.")
     assertthat::assert_that(designMatrixName %in% names(dgeObj),
                             msg = "designMatrixName must be specified and must be one of the items in dgeObj. Use names(dgeObj) to check for available options.")
-    assertthat::assert_that("DGEList" %in% DGEobj::showTypes(dgeObj,  FALSE)$Type,
+    assertthat::assert_that("DGEList" %in% DGEobj::showTypes(dgeObj)$Type,
                             msg = "No DGEList found in dgeObj. Specify a DGEobj that contains a DGEList.")
     designMatrix <- DGEobj::getItem(dgeObj, designMatrixName)
 
