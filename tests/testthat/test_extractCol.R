@@ -4,7 +4,7 @@ test_that('extractCol: extractCol()', {
     suppressWarnings(skip_if(is.null(getType(t_obj1, "topTable"))))
 
     extractCol_contrastList <- getType(t_obj1, "topTable")[1:2]
-    extractCol_one_test <- extractCol(extractCol_contrastList, colName = "P.Value")
+    extractCol_one_test <- extractCol(extractCol_contrastList, colName = "P.Value", robust = FALSE)
 
     expect_true(is.data.frame(extractCol_one_test))
     expect_equal(nrow(extractCol_one_test), 946)
