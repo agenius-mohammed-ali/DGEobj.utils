@@ -19,7 +19,8 @@ test_that("convertCounts.R: convertCounts()", {
                    c(100, 48))
 
     # TPM
-    genelength <- getItem(t_obj1, "geneData")$ExonLength
+    gene_data <- getItem(t_obj1, "geneData")
+    genelength <- c(gene_data$end - gene_data$start)
     count_matrix <- convertCounts(counts      = t_obj1$counts,
                                   unit        = "TPM",
                                   geneLength  = genelength ,
