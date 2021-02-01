@@ -46,7 +46,7 @@ topTable.merge <- function(contrastList,
     contrastNames <- names(contrastList)
 
     # Get the first set of columns
-    dat <- extractCol(contrastList, colName = colNames[1], robust = TRUE) %>%
+    dat <- extractCol(contrastList, colName = colNames[1], robust = FALSE) %>%
         as.data.frame
     colnames(dat) <- stringr::str_c(colNames[1], "_", colnames(dat))
     dat <- round(dat, digits[1])
@@ -54,7 +54,9 @@ topTable.merge <- function(contrastList,
 
     if (length(colNames)  > 1) {
         for (i in 1:length(colNames)) {
-            dat2 <- extractCol(contrastList, colName = colNames[i], robust = TRUE) %>%
+            # calling extractCol with robust = FALSE as all dataframes have the same row count
+            # and column order and to preserves the original row order.
+            dat2 <- extractCol(contrastList, colName = colNames[i], robust = FALSE) %>%
                 as.data.frame
             # Add datatype as prefix on colname e.g. logFC_contrastname
             colnames(dat2) <- stringr::str_c(colNames[i], "_", colnames(dat2))
@@ -63,7 +65,7 @@ topTable.merge <- function(contrastList,
             if (i == 1) {
                 dat <- dat2
             } else {
-                dat <- merge(x = dat, y = dat2, by = "rowid", all.x = TRUE, sort = FALSE)
+                dat <- merge(x = dat, y = dat2, by = "rowID", all.x = TRUE, sort = FALSE)
             }
         }
     }
