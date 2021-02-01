@@ -6,9 +6,7 @@ test_that("topTable.merge.R: topTable.merge()", {
 
     # creating toptables list
     contrastList   <- getType(t_obj1, "topTable")
-    contrast_table <- topTable.merge(contrastList = contrastList,
-                                     colNames = colnames(contrastList[[1]]),
-                                     digits = 2)
+    contrast_table <- topTable.merge(contrastList = contrastList, digits = 2)
     expect_setequal(object = colnames(contrast_table),
                     expected = apply(X        = expand.grid(c("logFC", "AveExpr", "P.Value", "adj.P.Val"), names(contrastList)),
                                      MARGIN   =  1,
