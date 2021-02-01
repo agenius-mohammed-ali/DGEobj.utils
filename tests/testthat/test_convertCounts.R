@@ -2,8 +2,6 @@ context("DGEobj.utils - tests for convertCounts.R functions")
 
 
 test_that("convertCounts.R: convertCounts()", {
-    skip_if(is.null(getItem(t_obj1, "geneData")$ExonLength))
-
     # CPM
     count_matrix <- convertCounts(counts      = t_obj1$counts_orig,
                                   unit        = "CPM",
