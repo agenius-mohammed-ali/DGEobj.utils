@@ -36,10 +36,8 @@ test_that("convertCounts.R: convertCounts()", {
     expect_warning(convertCounts(counts = t_obj1$counts, unit = "TPM", geneLength = genelength, prior.count = 1,log = TRUE),
                    regexp = "Using a prior.count for logTPM calculations is not recommended and may produce unpredictable results!")
 
-    warnings_tpm <- capture_warnings(convertCounts(counts = t_obj1$counts_orig[1:100,], unit = "TPM", geneLength  = genelength[1:100]))
-    expect_length(warnings_tpm, 2)
-    expect_equal(warnings_tpm[[1]], "You should use the whole dataset when calculating TPM, not a subset.")
-    expect_equal(warnings_tpm[[2]], "You should use the whole dataset when calculating FPKM, not a subset.")
+    expect_equal(dim(convertCounts(counts = t_obj1$counts_orig[1:100,], unit = "TPM", geneLength  = genelength[1:100])),
+                 c(100, 48))
     }
 )
 
