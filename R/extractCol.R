@@ -66,7 +66,11 @@ extractCol <- function(contrastList, colName, robust = TRUE){
 
     for (i in 1:length(contrastList)) {
         newdat <- cbind(rowid = rownames(contrastList[[i]]), data.frame(contrastList[[i]], row.names = NULL))
-        newdat <- newdat[, c("rowid", "P.Value")]
+        # use the pass colName to extract related data
+        newdat <- newdat[, c("rowid", colName)]
+        # rename the colname to match the list name to avoid duplication after
+        # merging the same column over and over
+        names(newdat) <- c("rowid", names(contrastList)[i])
 
         if (i == 1) {
             dat <- newdat
