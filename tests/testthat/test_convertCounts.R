@@ -15,8 +15,8 @@ test_that("convertCounts.R: convertCounts()", {
                  msg = "argument \"counts\" is missing, with no default")
     expect_error(convertCounts(counts = t_obj1$counts_orig),
                  msg = "argument \"unit\" is missing, with no default")
-    expect_warning(convertCounts(counts = t_obj1$counts_orig[1:100,], unit = "CPM"),
-                   "You should use the whole dataset when calculating CPM, not a subset.")
+    expect_equal(dim(convertCounts(counts = t_obj1$counts_orig[1:100,], unit = "CPM")),
+                   c(100, 48))
 
     # TPM
     genelength <- getItem(t_obj1, "geneData")$ExonLength
