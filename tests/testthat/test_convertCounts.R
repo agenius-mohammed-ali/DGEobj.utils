@@ -44,7 +44,8 @@ test_that("convertCounts.R: convertCounts()", {
 test_that("convertCounts.R: tpm.on.subset()", {
     geneLength <- NULL
     if (attr(t_obj1, "source") == "Omicsoft") {
-        geneLength <- getItem(t_obj1, "geneData")$ExonLength
+        gene_data <- getItem(t_obj1, "geneData")
+        geneLength <- c(gene_data$end - gene_data$start)
     } else if ("effectiveLength_orig" %in% names(t_obj1)) {
         geneLength <- rowMeans(getItem(t_obj1, "effectiveLength_orig"), na.rm = TRUE)
     }
