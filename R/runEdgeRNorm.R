@@ -48,7 +48,8 @@ runEdgeRNorm <- function(dgeObj,
                               itemType = "DGEList",
                               funArgs = funArgs,
                               itemAttr = itemAttr,
-                              parent = "counts")
+                              parent = "counts",
+                              overwrite = TRUE)
 
     # Plot the Norm factors
     if (!is.null(plotLabels)  && length(plotLabels == ncol(dgeObj))) {
