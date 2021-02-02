@@ -55,13 +55,13 @@ lowIntFilter <- function(dgeObj,
     }
 
     counts <- getItem(dgeObj, "counts")
-    geneLength <- dgeObj$geneData$ExonLength
+    geneLength <- dgeObj$geneData$end - dgeObj$geneData$start
 
     starting_rowcount <- nrow(counts)
 
     # Get geneLength from DGEobj
     if (is.null(geneLength)) {  # User supplied geneLength supercedes geneLength from DGEobj
-        geneLength <- dgeObj$geneData$ExonLength
+        geneLength <- dgeObj$geneData$end - dgeObj$geneData$start
     }
 
     # Apply zFPKM threshold
