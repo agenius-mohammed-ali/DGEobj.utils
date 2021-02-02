@@ -4,7 +4,8 @@ context("DGEobj.utils - tests for runSVA.R functions")
 test_that("runSVA.R: runSVA()", {
     skip_if(is.null(t_obj1$ReplicateGroupDesign))
 
-    dgeObj_sva <- runSVA(dgeObj = t_obj1, designMatrixName = "ReplicateGroupDesign")
+    expect_warning({dgeObj_sva <- runSVA(dgeObj = t_obj1,
+                                        designMatrixName = "ReplicateGroupDesign")})
 
     expect_s3_class(dgeObj_sva, "DGEobj")
 
