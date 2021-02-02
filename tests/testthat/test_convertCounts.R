@@ -75,9 +75,8 @@ test_that("convertCounts.R: tpm.on.subset()", {
 })
 
 test_that("convertCounts.R: tpm.direct()", {
-    skip_if(is.null(getItem(t_obj1, "geneData")$ExonLength))
-
-    genelength <- getItem(t_obj1, "geneData")$ExonLength
+    gene_data <- getItem(t_obj1, "geneData")
+    genelength <- c(gene_data$end - gene_data$start)
     tpmObj <- tpm.direct(t_obj1$counts, geneLength = genelength)
     expect_true("matrix" %in% class(tpmObj))
 
@@ -87,7 +86,7 @@ test_that("convertCounts.R: tpm.direct()", {
 
     # testing bad genelength parameter
     expect_error(tpm.direct(t_obj1$counts, geneLength = as.data.frame(genelength)),
-                 regexp = "The dimensions of counts and geneLength should match.")
+                 regexp = "The dimensions of countsMatrix and geneLength should match.")
 
     # testing collapse parameter
     tpmObj <- tpm.direct(t_obj1$counts, geneLength = as.matrix(genelength), collapse = TRUE)
