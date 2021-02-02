@@ -173,7 +173,7 @@ tpm.on.subset <- function(dgeObj, applyFilter = TRUE){
 
     # Get geneLength depending on source data
     if (attr(dgeObj, "source") == "Omicsoft") { # Omicsoft data
-        geneLength <- rowdata$ExonLength
+        geneLength <- rowdata$end - rowdata$start
     } else if ("effectiveLength_orig" %in% names(dgeObj)) { # Use rowMeans(effectiveLength)
         geneLength <- rowMeans(getItem(dgeObj, "effectiveLength_orig"), na.rm = TRUE)
     }
