@@ -79,6 +79,5 @@ extractCol <- function(contrastList, colName, robust = TRUE){
         }
     }
     dat <- data.frame(dat[,-c(1)], row.names = dat[,c(1)])
-    colnames(dat) <- names(contrastList)
     return(dat)
 }
