@@ -51,18 +51,19 @@ isoformFrac <- function(dgeObj,
     counts <- DGEobj::getItem(dgeObj, "counts")
     isoformData <- DGEobj::getItem(dgeObj, "isoformData")
 
+    gene_length <- dgeObj$isoformData$end - dgeObj$isoformData$start
     omicData <- switch(tolower(dataType),
                        "fpkm" = convertCounts(counts,
                                               unit = "fpkm",
-                                              geneLength = isoformData$ExonLength,
+                                              geneLength = gene_length,
                                               normalize = normalize),
                        "tpm" = convertCounts(counts,
                                              unit = "TPM",
-                                             geneLength = isoformData$ExonLength,
+                                             geneLength = gene_length,
                                              normalize = "none")
     ) %>% as.data.frame()
 
-    omicData$GeneID <- isoformData$GeneID
+    omicData$GeneID <- isoformData$ensembl_gene_id
     omicData$TranscriptID <- rownames(omicData)
 
     # Calculate isoform fraction
