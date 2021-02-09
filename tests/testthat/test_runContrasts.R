@@ -7,12 +7,12 @@ test_that('runContrasts.R: runContrasts()', {
 
     dgeObj <- t_obj1
     contrastList <- getType(dgeObj, "topTable")
-    names(contrastList) <- colnames(dgeObj$RG)[-1]
+    names(contrastList) <- colnames(dgeObj$ReplicateGroupDesign)[-1]
 
     dgeObj_output <- runContrasts(dgeObj              = dgeObj,
-                                  designMatrixName    = "RG",
+                                  designMatrixName    = "ReplicateGroupDesign",
                                   contrastList        = contrastList,
-                                  contrastSetName     = "RG_Contrasts")
+                                  contrastSetName     = "ReplicateGroupDesign_Contrasts")
     expect_s3_class(dgeObj_output, "DGEobj")
 
     dgeObj_output <- runContrasts(dgeObj              = dgeObj,
